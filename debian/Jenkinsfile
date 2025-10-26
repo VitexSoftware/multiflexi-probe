@@ -1,0 +1,158 @@
+#!groovy
+
+// Aktuální verze Pipeline: https://github.com/VitexSoftware/BuildImages/blob/main/Test/Jenkinsfile-parael
+
+String[] distributions = [
+    'debian:bookworm',
+    'debian:trixie',
+    'debian:forky',
+    'ubuntu:jammy',
+    'ubuntu:noble'
+]
+
+String vendor = 'vitexsoftware'
+String imagePrefix = 'multiflexi-'
+
+properties([
+    copyArtifactPermission('*')
+])
+
+node {
+    ansiColor('xterm') {
+        stage('SCM Checkout') {
+            checkout scm
+        }
+    }
+}
+
+def branches = [:]
+
+distributions.each { distro ->
+    branches[distro] = {
+        def (distroFamily, distroCode) = distro.split(':')
+        def imageName = "${vendor}/${imagePrefix}${distroCode}:latest"
+        def buildImage
+        def artifacts = []
+        def buildVer
+
+        node {
+            ansiColor('xterm') {
+                stage("Checkout ${distro}") {
+                    checkout scm
+                    buildImage = docker.image(imageName)
+
+                    sh 'git checkout debian/changelog'
+                    buildVer = sh(
+                        script: "dpkg-parsechangelog --show-field Version",
+                        returnStdout: true
+                    ).trim() + ".${env.BUILD_NUMBER}~${distroCode}"
+                }
+
+                stage("Build ${distro}") {
+                    buildImage.inside {
+                        sh """
+                            dch -b -v ${buildVer} "${env.BUILD_TAG}"
+                            sudo apt-get update --allow-releaseinfo-change
+                            sudo chown jenkins:jenkins ..
+                            debuild-pbuilder -i -us -uc -b
+                            mkdir -p \$WORKSPACE/dist/debian/
+                            rm -rf \$WORKSPACE/dist/debian/*
+                            for deb in \$(awk '{print \$1}' debian/files); do
+                              mv "../\$deb" \$WORKSPACE/dist/debian/
+                            done
+                        """
+                        artifacts = sh(
+                            script: "awk '{print \$1}' debian/files",
+                            returnStdout: true
+                        ).trim().split('\n')
+                    }
+                }
+
+                stage("Test ${distro}") {
+                    buildImage.inside {
+                        def debconf_debug = 0
+
+                        def installOrder = [
+                            '', // Here add package names to install in order
+                        ]
+
+                        sh """
+                            cd \$WORKSPACE/dist/debian/
+                            dpkg-scanpackages . /dev/null > Packages
+                            gzip -9c Packages > Packages.gz
+                            cd \$WORKSPACE
+                            echo "deb [trusted=yes] file://///\$WORKSPACE/dist/debian/ ./" | sudo tee /etc/apt/sources.list.d/local.list
+                            sudo apt-get update --allow-releaseinfo-change
+                        """
+
+                        // Convert artifacts to a mutable list
+                        def sorted_artifacts = artifacts.toList()
+                        def installed = []
+
+                        // Install packages in the specified order first
+                        installOrder.each { pkgPrefix ->
+                            def debFile = null
+                            for (item in sorted_artifacts) {
+                                def itemStr = item.toString()
+                                if (itemStr.startsWith(pkgPrefix) && itemStr.endsWith('.deb')) {
+                                    debFile = itemStr
+                                    break
+                                }
+                            }
+                            if (debFile) {
+                                sh 'echo -e "${GREEN} installing ' + debFile + ' on `lsb_release -sc` ${ENDCOLOR} "'
+                                sh 'sudo DEBIAN_FRONTEND=noninteractive DEBCONF_DEBUG=' + debconf_debug + ' apt-get -y install $WORKSPACE/dist/debian/' + debFile
+                                installed << debFile
+                            }
+                        }
+
+                        // Install remaining .deb artifacts not already installed
+                        sorted_artifacts.each { item ->
+                            def itemStr = item.toString()
+                            if (itemStr.endsWith('.deb') && !(installed.contains(itemStr))) {
+                                sh 'echo -e "${GREEN} installing ' + itemStr + ' on `lsb_release -sc` ${ENDCOLOR} "'
+                                sh 'sudo DEBIAN_FRONTEND=noninteractive DEBCONF_DEBUG=' + debconf_debug + ' apt-get -y install $WORKSPACE/dist/debian/' + itemStr
+                            }
+                        }
+
+                        if (fileExists('debian/tests/control')) {
+                            sh "autopkgtest --null-mount ../*.changes"
+                        }
+
+                    }
+                }
+
+                stage("Archive artifacts ${distro}") {
+                    buildImage.inside {
+                        artifacts.each { deb_file ->
+                            println "Archiving artifact: ${deb_file}"
+                            archiveArtifacts artifacts: "dist/debian/${deb_file}"
+                        }
+
+                        sh '''
+                            set -e
+                            if [ -f debian/files ]; then
+                              while read -r file _; do
+                                [ -n "$file" ] || continue
+                                rm -f "dist/debian/$file" || true
+                                rm -f "../$file" || true
+                                rm -f "$WORKSPACE/$file" || true
+                              done < debian/files
+                            fi
+                        '''
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+
+parallel branches
+
+node {
+    stage('Publish to Aptly') {
+        publishDebToAptly()
+    }
+}
