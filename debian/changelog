@@ -1,0 +1,7 @@
+multiflexi-probe (2.0.3) UNRELEASED; urgency=medium
+
+  * Initial release as standalone package
+  * Moved from MultiFlexi main repository
+  * Testing and debugging tool for MultiFlexi task launcher
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sun, 26 Oct 2025 12:47:00 +0100

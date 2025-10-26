@@ -1,0 +1,4 @@
+multiflexi/*.json     usr/lib/multiflexi-probe/multiflexi/
+
+*.svg usr/share/multiflexi/images/
+multiflexi-probe			       usr/bin/

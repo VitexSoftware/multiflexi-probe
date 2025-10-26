@@ -1,0 +1,21 @@
+{
+    "name": "vitexsoftware/multiflexi-probe",
+    "description": "MultiFlexi probe tool for testing task launcher",
+    "version": "2.0.3",
+    "type": "project",
+    "keywords": ["MultiFlexi", "probe", "testing", "debugging"],
+    "homepage": "https://github.com/VitexSoftware/MultiFlexi",
+    "authors": [
+        {
+            "name": "Vítězslav Dvořák",
+            "email": "info@vitexsoftware.cz"
+        }
+    ],
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
+}

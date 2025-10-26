@@ -1,0 +1,18 @@
+# Debian build artifacts
+debian/multiflexi-probe/
+debian/.debhelper/
+debian/files
+debian/*.log
+debian/*.substvars
+
+# Composer
+vendor/
+composer.lock
+
+# IDE
+.vscode/
+.idea/
+
+# Test outputs
+env_report.json
+*.test.log

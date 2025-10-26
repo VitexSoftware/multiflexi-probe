@@ -1,0 +1,14 @@
+Source: multiflexi-probe
+Section: web
+Priority: optional
+Maintainer: "Vítězslav Dvořák" <info@vitexsoftware.cz>
+Build-Depends: debhelper (>=12~), jq
+Standards-Version: 4.1.4
+Homepage: https://github.com/VitexSoftware/MultiFlexi
+
+Package: multiflexi-probe
+Multi-Arch: foreign
+Architecture: all
+Pre-Depends: multiflexi-web, multiflexi-common
+Description: MultiFlexi probe tool
+ Add Special debugging application to your MultiFlexi
