@@ -9,7 +9,6 @@ Homepage: https://github.com/VitexSoftware/MultiFlexi
 Package: multiflexi-probe
 Multi-Arch: foreign
 Architecture: all
-Depends: multiflexi
-Pre-Depends: multiflexi-web, multiflexi-common
+Depends: multiflexi-cli
 Description: MultiFlexi probe tool
  Add Special debugging application to your MultiFlexi
