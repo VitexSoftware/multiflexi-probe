@@ -38,7 +38,7 @@ make dimagex             # Build multi-arch OCI image (arm/v7, arm64/v8, amd64)
 ### Validation
 ```bash
 make validate            # Validate JSON schema compliance
-multiflexi-cli application validate-json --json multiflexi/multiflexi_probe.multiflexi.app.json
+multiflexi-cli application validate-json --file multiflexi/multiflexi_probe.multiflexi.app.json
 ```
 
 ### Testing
@@ -68,7 +68,7 @@ make clean               # Remove build artifacts
 **Critical**: All `*.app.json` files in the `multiflexi/` directory MUST conform to the schema. After editing any JSON file, validate with:
 
 ```bash
-multiflexi-cli application validate-json --json multiflexi/[filename].app.json
+multiflexi-cli application validate-json --file multiflexi/[filename].app.json
 ```
 
 The schema is versioned and should match the `"multiflexi"` field value in the app.json (currently "2.0.0").

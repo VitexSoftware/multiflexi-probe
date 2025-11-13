@@ -1,7 +1,14 @@
-multiflexi-probe (2.0.3) UNRELEASED; urgency=medium
+multiflexi-probe (2.1.0) UNRELEASED; urgency=medium
 
+  * multiflexi-cli used instead of mulitiflexi-web
+
+ -- vitex <info@vitexsoftware.cz>  Thu, 13 Nov 2025 19:24:34 +0100
+
+multiflexi-probe (2.0.3) unstable; urgency=medium
+
+  [ Vítězslav Dvořák ]
   * Initial release as standalone package
   * Moved from MultiFlexi main repository
   * Testing and debugging tool for MultiFlexi task launcher
 
- -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sun, 26 Oct 2025 12:47:00 +0100
+ -- vitex <info@vitexsoftware.cz>  Thu, 13 Nov 2025 19:24:00 +0100
