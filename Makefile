@@ -2,9 +2,9 @@
 help: ## 📋 Displays this list of targets with descriptions
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: install
+.PHONY: import
 install: ## 📦 Install probe application to MultiFlexi
-	multiflexi-json2app multiflexi/multiflexi_probe.multiflexi.app.json
+	multiflexi-cli application import-json --file multiflexi/multiflexi_probe.multiflexi.app.json
 
 .PHONY: validate
 validate: ## ✓ Validate application JSON schema
