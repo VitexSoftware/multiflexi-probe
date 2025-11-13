@@ -3,7 +3,7 @@ help: ## 📋 Displays this list of targets with descriptions
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: import
-install: ## 📦 Install probe application to MultiFlexi
+import: ## 📦 Import probe application to MultiFlexi
 	multiflexi-cli application import-json --file multiflexi/multiflexi_probe.multiflexi.app.json
 
 .PHONY: validate
