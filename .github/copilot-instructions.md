@@ -43,6 +43,7 @@ This is the **MultiFlexi Probe** project - a task launcher testing tool designed
 
 ### Application Configuration (`*.app.json` files)
 - All files `*.app.json` must conform to the schema available at: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json
+- All files `*.credential-type.json` must conform to the schema available at: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.credential-type.schema.json
 - Always use schema version 3.0.0
 - Use `cmdparamsTemplate` with `${VARIABLE}` syntax for placeholders
 - Environment variables must follow the pattern `^[A-Z0-9_]+$`
