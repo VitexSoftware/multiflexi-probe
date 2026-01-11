@@ -4,13 +4,13 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-APPLICATION=multiflexi-probe
-for file in `ls /usr/lib/$APPLICATION/multiflexi/*.app.json`
+APPLICATION=$(echo "$DPKG_MAINTSCRIPT_PACKAGE" | sed 's/multiflexi-//')
+for file in /usr/lib/$APPLICATION/multiflexi/*.app.json
 do
 	multiflexi-cli application import-json --file $file
 done
 
-for file in `ls /usr/lib/$APPLICATION/multiflexi/*.credtype.json`
+for file in /usr/lib/$APPLICATION/multiflexi/*.credtype.json
 do
-	multiflexi-cli credtype import-json --file $file
+	multiflexi-cli crprototype import-json --file $file
 done

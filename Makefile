@@ -6,10 +6,6 @@ help: ## 📋 Displays this list of targets with descriptions
 import: ## 📦 Import probe application to MultiFlexi
 	multiflexi-cli application import-json --file multiflexi/multiflexi_probe.multiflexi.app.json
 
-.PHONY: validate
-validate: ## ✓ Validate application JSON schema
-	multiflexi-cli application validate-json --json multiflexi/multiflexi_probe.multiflexi.app.json
-
 .PHONY: debs
 debs: ## 📦 Build Debian package
 	debuild -i -us -uc -b
@@ -29,3 +25,16 @@ dimagex: ## 🌐 Build and push multi-arch docker image
 .PHONY: test
 test: ## 🧪 Test probe locally
 	./multiflexi-probe /etc/fstab
+
+.PHONY: validate-multiflexi-app
+validate-multiflexi-app: ## ✓ Validate application JSON schema
+	@if [ -d multiflexi ]; then \
+		for file in multiflexi/*.multiflexi.app.json; do \
+			if [ -f "$$file" ]; then \
+				echo "Validating $$file"; \
+				multiflexi-cli app validate-json --file="$$file"; \
+			fi; \
+		done; \
+	else \
+		echo "No multiflexi directory found"; \
+	fi
