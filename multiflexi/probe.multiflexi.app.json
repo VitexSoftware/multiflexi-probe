@@ -11,7 +11,7 @@
   },
   "executable": "multiflexi-probe",
   "cmdparamsTemplate": "${FILE_UPLOAD}",
-  "homepage": "https://github.com/VitexSoftware/MultiFlexi",
+  "homepage": "https://github.com/VitexSoftware/MultiFlexi/multiflexi-probe",
   "ociimage": "docker.io/vitexsoftware/multiflexi-probe",
   "uuid": "775ed801-2489-4981-bc14-d8a01cba1938",
   "tags": [
