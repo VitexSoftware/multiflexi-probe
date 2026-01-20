@@ -4,7 +4,7 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-APPLICATION=$(echo "$DPKG_MAINTSCRIPT_PACKAGE" | sed 's/multiflexi-//')
+APPLICATION=$(echo "$DPKG_MAINTSCRIPT_PACKAGE")
 for file in /usr/lib/$APPLICATION/multiflexi/*.app.json
 do
 	multiflexi-cli application import-json --file $file
@@ -12,5 +12,5 @@ done
 
 for file in /usr/lib/$APPLICATION/multiflexi/*.credtype.json
 do
-	multiflexi-cli crprototype import-json --file $file
+#TODO:	multiflexi-cli crprototype import-json --file $file
 done

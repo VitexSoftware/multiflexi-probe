@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/credential-type.json",
   "uuid": "d3d3ae58-d64a-4ab4-afb5-ba439ffc8587",
   "version": "1.0.0",
   "code": "Probe",
