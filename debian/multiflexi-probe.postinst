@@ -10,7 +10,7 @@ do
 	multiflexi-cli application import-json --file $file
 done
 
-for file in /usr/lib/$APPLICATION/multiflexi/*.credtype.json
-do
+#for file in /usr/lib/$APPLICATION/multiflexi/*.credtype.json
+#do
 #TODO:	multiflexi-cli crprototype import-json --file $file
-done
+#done
