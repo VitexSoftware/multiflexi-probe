@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>cz.vitexsoftware.multiflexi_probe</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <name>multiflexi-probe</name>
+  <summary>MultiFlexi probe tool</summary>
+  <description>
+    <p>
+      Add Special debugging application to your MultiFlexi
+    </p>
+  </description>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <url type="homepage">https://github.com/VitexSoftware/MultiFlexi</url>
+  <url type="bugtracker">https://github.com/VitexSoftware/MultiFlexi/issues</url>
+  <developer id="cz.vitexsoftware">
+    <name>VitexSoftware</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+</component>
