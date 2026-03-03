@@ -22,6 +22,10 @@ dimage: ## 🐳 Build docker image
 dimagex: ## 🌐 Build and push multi-arch docker image
 	docker buildx build -f Containerfile . --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag docker.io/vitexsoftware/multiflexi-probe
 
+.PHONY: use
+use: ## Install into multiflexi
+	multiflexi-cli app import-json --file multiflexi/probe.multiflexi.app.json
+
 .PHONY: test
 test: ## 🧪 Test probe locally
 	./multiflexi-probe /etc/fstab
