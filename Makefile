@@ -42,3 +42,20 @@ validate-multiflexi-app: ## ✓ Validate application JSON schema
 	else \
 		echo "No multiflexi directory found"; \
 	fi
+
+.PHONY: helm-lint
+helm-lint: ## ✓ Validate Helm chart
+	helm lint helm/
+
+.PHONY: helm-template
+helm-template: ## 📋 Render Helm chart templates
+	helm template multiflexi-probe helm/
+
+.PHONY: helm-install
+helm-install: ## 🚀 Install or upgrade Helm release in namespace multiflexi
+	helm upgrade --install multiflexi-probe helm/ --namespace multiflexi --create-namespace
+
+.PHONY: helm-package
+helm-package: ## 📦 Package Helm chart
+	@mkdir -p releases
+	helm package helm/ --destination releases

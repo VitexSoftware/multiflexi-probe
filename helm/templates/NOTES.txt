@@ -1,0 +1,8 @@
+1. Check deployment status:
+   kubectl get pods -n {{ .Release.Namespace }} -l app.kubernetes.io/instance={{ .Release.Name }}
+
+2. Inspect environment variables resolved by chart:
+   kubectl describe configmap {{ include "multiflexi-probe.fullname" . }} -n {{ .Release.Namespace }}
+
+3. Run one-off probe command in the pod:
+   kubectl exec -n {{ .Release.Namespace }} deploy/{{ include "multiflexi-probe.fullname" . }} -- multiflexi-probe /etc/fstab

@@ -1,0 +1,14 @@
+apiVersion: v2
+name: multiflexi-probe
+description: Helm chart for MultiFlexi Probe
+type: application
+version: 0.1.0
+appVersion: "2.0.1"
+home: https://github.com/VitexSoftware/multiflexi-probe
+icon: https://raw.githubusercontent.com/VitexSoftware/multiflexi-probe/main/multiflexi-probe.svg
+sources:
+  - https://github.com/VitexSoftware/multiflexi-probe
+keywords:
+  - multiflexi
+  - probe
+  - diagnostics

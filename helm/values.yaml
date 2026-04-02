@@ -1,0 +1,46 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/vitexsoftware/multiflexi-probe
+  tag: "2.0.1"
+  pullPolicy: IfNotPresent
+
+podLabels: {}
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+environment:
+  FILE_UPLOAD: "/etc/fstab"
+  APP_DEBUG: "False"
+  RESULT_FILE: "env_report.json"
+  FORCE_EXITCODE: "0"
+  ZABBIX_KEY: "multiflexi-probe-{PASSWORD}"
+
+secrets:
+  PASSWORD: "donotcare"
+
+command:
+  enabled: true
+  value:
+    - /bin/sh
+    - -c
+    - while true; do sleep 3600; done
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

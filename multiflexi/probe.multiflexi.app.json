@@ -22,7 +22,7 @@
     "tool"
   ],
   "version": "2.0.1",
-  "schemaVersion": "3.2.1",
+  "schemaVersion": "3.3.0",
   "requirements": [
     "Probe",
     "mServer",
@@ -101,5 +101,26 @@
         "cs": "Výstupní soubor JSON dat generovaný sondou."
       }
     }
-  ]
+  ],
+  "kubernetes": {
+    "helm": {
+      "enabled": true,
+      "releaseName": "multiflexi-probe",
+      "namespace": "multiflexi",
+      "chart": "./helm",
+      "valuesFiles": [
+        "./helm/values.yaml"
+      ],
+      "set": {},
+      "upgradeInstall": true,
+      "timeoutSeconds": 300,
+      "atomic": false,
+      "wait": true
+    },
+    "artifacts": {
+      "enabled": true,
+      "outputPath": "env_report.json",
+      "keepPodOnFailure": false
+    }
+  }
 }

@@ -25,10 +25,11 @@ MultiFlexi Probe is a diagnostic application designed to test and validate the M
 
 ## Configuration Schema
 
-This application follows MultiFlexi Application Schema version 3.0.0 with:
+This application follows MultiFlexi Application Schema version 3.3.0 with:
 - Localized application name and descriptions (English/Czech)
 - Localized environment variable descriptions
 - Schema-compliant configuration structure
+- Optional Kubernetes metadata under `kubernetes.helm` and `kubernetes.artifacts`
 
 ## Installation
 
@@ -52,7 +53,7 @@ multiflexi-probe [file-path]
 
 ## Configuration
 
-The MultiFlexi Probe application configuration (`multiflexi/multiflexi_probe.multiflexi.app.json`) follows the MultiFlexi Application Schema version 3.0.0 with localization support for both English and Czech languages.
+The MultiFlexi Probe application configuration (`multiflexi/probe.multiflexi.app.json`) follows the MultiFlexi Application Schema version 3.3.0 with localization support for both English and Czech languages.
 
 ### Environment Variables
 
@@ -79,6 +80,52 @@ Run container:
 ```bash
 docker run vitexsoftware/multiflexi-probe
 ```
+
+## Helm
+
+The repository now includes a chart in `helm/` for Kubernetes deployment.
+
+Render chart templates:
+```bash
+make helm-template
+```
+
+Lint chart:
+```bash
+make helm-lint
+```
+
+Install or upgrade chart:
+```bash
+make helm-install
+```
+
+it gives the following output:
+
+```shell
+helm upgrade --install multiflexi-probe helm/ --namespace multiflexi --create-namespace
+Release "multiflexi-probe" does not exist. Installing it now.
+NAME: multiflexi-probe
+LAST DEPLOYED: Thu Apr  2 10:25:37 2026
+NAMESPACE: multiflexi
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+1. Check deployment status:
+   kubectl get pods -n multiflexi -l app.kubernetes.io/instance=multiflexi-probe
+
+2. Inspect environment variables resolved by chart:
+   kubectl describe configmap multiflexi-probe-multiflexi-probe -n multiflexi
+
+3. Run one-off probe command in the pod:
+   kubectl exec -n multiflexi deploy/multiflexi-probe-multiflexi-probe -- multiflexi-probe /etc/fstab
+```
+
+
+
+
 
 ## Development
 

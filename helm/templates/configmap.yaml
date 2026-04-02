@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "multiflexi-probe.fullname" . }}
+  labels:
+    {{- include "multiflexi-probe.labels" . | nindent 4 }}
+data:
+  FILE_UPLOAD: {{ .Values.environment.FILE_UPLOAD | quote }}
+  APP_DEBUG: {{ .Values.environment.APP_DEBUG | quote }}
+  RESULT_FILE: {{ .Values.environment.RESULT_FILE | quote }}
+  FORCE_EXITCODE: {{ .Values.environment.FORCE_EXITCODE | quote }}
+  ZABBIX_KEY: {{ .Values.environment.ZABBIX_KEY | quote }}
