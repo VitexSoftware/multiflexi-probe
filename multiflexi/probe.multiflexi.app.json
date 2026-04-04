@@ -107,10 +107,7 @@
       "enabled": true,
       "releaseName": "multiflexi-probe",
       "namespace": "multiflexi",
-      "chart": "./helm",
-      "valuesFiles": [
-        "./helm/values.yaml"
-      ],
+      "chart": "oci://ghcr.io/vitexsoftware/helm-charts/multiflexi-probe",
       "set": {},
       "upgradeInstall": true,
       "timeoutSeconds": 300,

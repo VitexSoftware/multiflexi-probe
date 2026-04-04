@@ -83,7 +83,9 @@ docker run vitexsoftware/multiflexi-probe
 
 ## Helm
 
-The repository now includes a chart in `helm/` for Kubernetes deployment.
+The repository includes a Helm chart in `helm/` for Kubernetes deployment.
+
+The production chart reference is `oci://ghcr.io/vitexsoftware/helm-charts/multiflexi-probe` (defined in `app.json`). The local `./helm` path is only used during development.
 
 Render chart templates:
 ```bash

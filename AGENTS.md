@@ -100,3 +100,12 @@ Key environment variables the probe recognizes:
 ## Container Image
 
 The OCI image is minimal (debian:stable-slim + bash + jq) and published to `docker.io/vitexsoftware/multiflexi-probe`. Multi-architecture builds support ARM and AMD64 platforms.
+
+## Kubernetes / Helm
+
+The Helm chart in `helm/` is for local development. The production chart reference in `app.json` is:
+`oci://ghcr.io/vitexsoftware/helm-charts/multiflexi-probe`
+
+This OCI reference is what gets stored in the MultiFlexi database `helmchart` column when the app is imported. The Kubernetes executor uses it for `helm upgrade --install` on first deployment.
+
+Local `valuesFiles` were removed from `app.json` as they reference paths only valid during development. Chart defaults apply in production.
