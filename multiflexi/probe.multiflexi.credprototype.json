@@ -17,7 +17,7 @@
         "en": "API Key",
         "cs": "API klíč"
       },
-      "type": "secret",
+      "type": "password",
       "description": {
         "en": "API key used to authenticate probe requests.",
         "cs": "API klíč pro autentizaci požadavků sondy."
@@ -44,7 +44,7 @@
         "en": "Timeout (seconds)",
         "cs": "Časový limit (sekundy)"
       },
-      "type": "number",
+      "type": "integer",
       "description": {
         "en": "Timeout for probe requests in seconds.",
         "cs": "Časový limit pro požadavky sondy v sekundách."
