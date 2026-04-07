@@ -1,8 +1,14 @@
-multiflexi-probe (2.1.0) UNRELEASED; urgency=medium
+multiflexi-probe (2.1.1) UNRELEASED; urgency=medium
+
+  * cred prototype installed now
+
+ -- vitex <info@vitexsoftware.cz>  Tue, 07 Apr 2026 14:00:14 +0200
+
+multiflexi-probe (2.1.0) unstable; urgency=medium
 
   * multiflexi-cli used instead of mulitiflexi-web
 
- -- vitex <info@vitexsoftware.cz>  Thu, 13 Nov 2025 19:24:34 +0100
+ -- vitex <info@vitexsoftware.cz>  Tue, 07 Apr 2026 14:00:09 +0200
 
 multiflexi-probe (2.0.3) unstable; urgency=medium
 

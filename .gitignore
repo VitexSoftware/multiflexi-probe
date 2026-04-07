@@ -16,3 +16,4 @@ composer.lock
 # Test outputs
 env_report.json
 *.test.log
+debian/debhelper-build-stamp

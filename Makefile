@@ -4,7 +4,9 @@ help: ## 📋 Displays this list of targets with descriptions
 
 .PHONY: import
 import: ## 📦 Import probe application to MultiFlexi
-	multiflexi-cli application import-json --file multiflexi/multiflexi_probe.multiflexi.app.json
+	multiflexi-cli application import-json --file multiflexi/probe.multiflexi.app.json
+	multiflexi-cli crprototype import-json --file=multiflexi/probe.multiflexi.credprototype.json
+
 
 .PHONY: debs
 debs: ## 📦 Build Debian package
