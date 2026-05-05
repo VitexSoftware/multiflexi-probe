@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>cz.vitexsoftware.multiflexi_probe</id>
+  <icon type="stock">multiflexi-probe</icon>
   <metadata_license>MIT</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
   <name>multiflexi-probe</name>
