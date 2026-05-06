@@ -2,4 +2,4 @@ multiflexi/*.json	usr/lib/multiflexi-probe/multiflexi/
 multiflexi/*.svg 	usr/share/multiflexi/images/
 multiflexi-probe	usr/bin/
 multiflexi-probe.svg	usr/share/icons/hicolor/scalable/apps/
-cz.vitexsoftware.multiflexi_probe.metainfo.xml	usr/share/metainfo/
+debian/cz.vitexsoftware.multiflexi_probe.metainfo.xml	usr/share/metainfo/
