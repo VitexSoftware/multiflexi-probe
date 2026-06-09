@@ -10,6 +10,13 @@
     "cs": "Nástroj pro testování spouštěče úloh"
   },
   "executable": "multiflexi-probe",
+  "events": {
+    "emits": {
+      "metrics.collected": {
+        "description": "Monitoring metrics were collected"
+      }
+    }
+  },
   "cmdparamsTemplate": "${FILE_UPLOAD}",
   "homepage": "https://github.com/VitexSoftware/multiflexi-probe",
   "ociimage": "docker.io/vitexsoftware/multiflexi-probe",
@@ -22,7 +29,7 @@
     "tool"
   ],
   "version": "2.0.1",
-  "schemaVersion": "3.3.0",
+  "schemaVersion": "3.4.0",
   "requirements": [
     "Probe",
     "mServer",
