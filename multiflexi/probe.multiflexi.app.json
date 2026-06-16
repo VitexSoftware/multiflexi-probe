@@ -88,6 +88,15 @@
       "defval": "0",
       "required": false
     },
+    "PROBE_SHOW_SECRETS": {
+      "type": "bool",
+      "description": {
+        "en": "Disable redaction of secret-looking variables (PASSWORD/SECRET/TOKEN/CREDENTIAL/*_KEY) in the env dump. Only use in a throwaway environment with no real credentials.",
+        "cs": "Vypnout maskování proměnných vypadajících jako tajemství (PASSWORD/SECRET/TOKEN/CREDENTIAL/*_KEY) ve výpisu prostředí. Používejte jen v jednorázovém prostředí bez reálných přihlašovacích údajů."
+      },
+      "defval": "False",
+      "required": false
+    },
     "ZABBIX_KEY": {
       "type": "string",
       "description": {

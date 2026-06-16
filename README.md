@@ -23,6 +23,22 @@ MultiFlexi Probe is a diagnostic application designed to test and validate the M
 - **Container Ready**: Available as OCI image for containerized execution
 - **Localization**: Supports English and Czech interface descriptions
 
+## Secret Redaction
+
+MultiFlexi injects real secrets into every job's environment (database credentials,
+`ENCRYPTION_MASTER_KEY`, credential fields, ...). Because this probe's whole purpose is to
+dump the full environment, and MultiFlexi stores that dump (`RESULT_FILE` / stdout)
+permanently in the job table, running it on an instance with real credentials configured
+would otherwise leak them into the database and every future backup.
+
+To prevent that, any environment variable whose **name** matches `PASSWORD`, `SECRET`,
+`TOKEN`, `CREDENTIAL`, `ENCRYPTION_MASTER_KEY`, `MULTIFLEXI_MASTER_KEY`, or ends in `_KEY`
+is redacted to `***REDACTED***` by default (the variable still appears in the output, just
+without its value — so `ZABBIX_KEY` is redacted too, even though it's not actually secret).
+
+Set `PROBE_SHOW_SECRETS=true` to get the raw, unredacted dump. Only do this in a throwaway
+test environment with no real credentials configured.
+
 ## Configuration Schema
 
 This application follows MultiFlexi Application Schema version 3.3.0 with:
@@ -63,6 +79,7 @@ The MultiFlexi Probe application configuration (`multiflexi/probe.multiflexi.app
 - `RESULT_FILE`: Output JSON file path (default: env_report.json)
 - `FORCE_EXITCODE`: Force specific exit code (integer)
 - `ZABBIX_KEY`: Zabbix item key name template
+- `PROBE_SHOW_SECRETS`: Disable secret redaction in the env dump (true/false, default: false — see [Secret Redaction](#secret-redaction))
 
 ## Docker/Podman
 

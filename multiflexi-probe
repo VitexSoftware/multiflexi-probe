@@ -16,7 +16,25 @@ else
 fi
 echo
 
-envirnonment_variables=$(env | jq -R 'split("=") | {(.[0]): .[1]}' | jq -s add)
+# MultiFlexi injects real secrets (DB password, ENCRYPTION_MASTER_KEY, credential
+# fields) into every job's environment. Since this probe persists its full env
+# dump into RESULT_FILE/stdout, which MultiFlexi stores permanently in the job
+# table, names matching this pattern are redacted by default. Set
+# PROBE_SHOW_SECRETS=true to get the raw, unredacted dump for local debugging.
+secret_name_pattern='(^|_)(PASSWORD|SECRET|TOKEN|CREDENTIAL)($|_)|^ENCRYPTION_MASTER_KEY$|^MULTIFLEXI_MASTER_KEY$|_KEY$'
+
+envirnonment_variables=$(
+    while IFS= read -r line; do
+        key="${line%%=*}"
+        value="${line#*=}"
+
+        if [ "${PROBE_SHOW_SECRETS:-false}" != "true" ] && [[ "$key" =~ $secret_name_pattern ]]; then
+            value="***REDACTED***"
+        fi
+
+        printf '%s=%s\n' "$key" "$value"
+    done < <(env) | jq -R 'split("=") | {(.[0]): (.[1:] | join("="))}' | jq -s add
+)
 
 if [ -n "$RESULT_FILE" ]; then
     echo "$envirnonment_variables"     > "$RESULT_FILE"
