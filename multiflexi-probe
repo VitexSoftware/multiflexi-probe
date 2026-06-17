@@ -47,6 +47,11 @@ echoerr "StdErr Output example"
 echo "Mount Info"
 cat /proc/self/mountinfo 
 
+if [[ -n "$PROBE_SLEEP" && "$PROBE_SLEEP" =~ ^[0-9]+$ && "$PROBE_SLEEP" -gt 0 ]]; then
+    echo "Sleeping for ${PROBE_SLEEP}s to simulate a long-running job..."
+    sleep "$PROBE_SLEEP"
+fi
+
 if [[ -n "$FORCE_EXITCODE" && "$FORCE_EXITCODE" =~ ^[0-9]+$ ]]; then
     exit "$FORCE_EXITCODE"
 fi

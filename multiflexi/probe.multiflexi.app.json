@@ -88,6 +88,15 @@
       "defval": "0",
       "required": false
     },
+    "PROBE_SLEEP": {
+      "type": "integer",
+      "description": {
+        "en": "Sleep for this many seconds before exiting, to simulate a long-running job. Set to 0 to disable.",
+        "cs": "Počet sekund čekání před ukončením, pro simulaci dlouho běžící úlohy. Nastavte na 0 pro vypnutí."
+      },
+      "defval": "0",
+      "required": false
+    },
     "PROBE_SHOW_SECRETS": {
       "type": "bool",
       "description": {
