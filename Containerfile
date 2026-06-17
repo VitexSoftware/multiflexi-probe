@@ -10,5 +10,5 @@ CMD ["/usr/bin/multiflexi-probe"]
 
 LABEL maintainer="Vítězslav Dvořák <info@vitexsoftware.cz>"
 LABEL description="Container for running the MultiFlexi probe."
-LABEL version="2.0.3"
+LABEL version="2.1.2"
 
