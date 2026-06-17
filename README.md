@@ -41,7 +41,7 @@ test environment with no real credentials configured.
 
 ## Configuration Schema
 
-This application follows MultiFlexi Application Schema version 3.3.0 with:
+This application follows MultiFlexi Application Schema version 3.4.0 with:
 - Localized application name and descriptions (English/Czech)
 - Localized environment variable descriptions
 - Schema-compliant configuration structure
@@ -69,7 +69,7 @@ multiflexi-probe [file-path]
 
 ## Configuration
 
-The MultiFlexi Probe application configuration (`multiflexi/probe.multiflexi.app.json`) follows the MultiFlexi Application Schema version 3.3.0 with localization support for both English and Czech languages.
+The MultiFlexi Probe application configuration (`multiflexi/probe.multiflexi.app.json`) follows the MultiFlexi Application Schema version 3.4.0 with localization support for both English and Czech languages.
 
 ### Environment Variables
 
@@ -78,6 +78,7 @@ The MultiFlexi Probe application configuration (`multiflexi/probe.multiflexi.app
 - `APP_DEBUG`: Enable debug output (true/false)
 - `RESULT_FILE`: Output JSON file path (default: env_report.json)
 - `FORCE_EXITCODE`: Force specific exit code (integer)
+- `PROBE_SLEEP`: Sleep this many seconds before exiting, to simulate a long-running job (integer, default: 0 — disabled)
 - `ZABBIX_KEY`: Zabbix item key name template
 - `PROBE_SHOW_SECRETS`: Disable secret redaction in the env dump (true/false, default: false — see [Secret Redaction](#secret-redaction))
 

@@ -1,7 +1,7 @@
 {
     "name": "vitexsoftware/multiflexi-probe",
     "description": "MultiFlexi probe tool for testing task launcher",
-    "version": "2.0.3",
+    "version": "2.1.2",
     "type": "project",
     "keywords": ["MultiFlexi", "probe", "testing", "debugging"],
     "homepage": "https://github.com/VitexSoftware/MultiFlexi",
