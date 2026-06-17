@@ -49,7 +49,17 @@ cat /proc/self/mountinfo
 
 if [[ -n "$PROBE_SLEEP" && "$PROBE_SLEEP" =~ ^[0-9]+$ && "$PROBE_SLEEP" -gt 0 ]]; then
     echo "Sleeping for ${PROBE_SLEEP}s to simulate a long-running job..."
-    sleep "$PROBE_SLEEP"
+    elapsed=0
+    while [[ $elapsed -lt $PROBE_SLEEP ]]; do
+        sleep 1
+        elapsed=$((elapsed + 1))
+        if (( elapsed % 60 == 0 )); then
+            echo
+        elif (( elapsed % 10 == 0 )); then
+            printf '.'
+        fi
+    done
+    echo
 fi
 
 if [[ -n "$FORCE_EXITCODE" && "$FORCE_EXITCODE" =~ ^[0-9]+$ ]]; then
