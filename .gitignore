@@ -7,7 +7,6 @@ debian/*.substvars
 
 # Composer
 vendor/
-composer.lock
 
 # IDE
 .vscode/
