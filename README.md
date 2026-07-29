@@ -1,4 +1,5 @@
 # MultiFlexi Probe
+![Packaging: deb](https://img.shields.io/badge/packaging-.deb-red?logo=debian&logoColor=white)
 
 Testing and debugging tool for MultiFlexi task launcher.
 
