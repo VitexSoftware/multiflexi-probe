@@ -3,6 +3,7 @@
   "uuid": "d3d3ae58-d64a-4ab4-afb5-ba439ffc8587",
   "version": "1.0.0",
   "code": "Probe",
+  "logo": "d3d3ae58-d64a-4ab4-afb5-ba439ffc8587.svg",
   "name": {
     "en": "Probe Credential",
     "cs": "Přihlašovací údaje pro sondu"
