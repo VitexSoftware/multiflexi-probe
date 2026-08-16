@@ -6,9 +6,13 @@
   <project_license>GPL-2.0-or-later</project_license>
   <name>multiflexi-probe</name>
   <summary>MultiFlexi probe tool</summary>
+  <summary xml:lang="cs">Testovací nástroj MultiFlexi Probe</summary>
   <description>
     <p>
       Add Special debugging application to your MultiFlexi
+    </p>
+    <p xml:lang="cs">
+      Přidá do vašeho MultiFlexi speciální diagnostickou aplikaci.
     </p>
   </description>
   <categories>
